@@ -1,0 +1,52 @@
+{
+  "election_id": "state-2026-ballot-measure-2",
+  "title": "Statewide Ballot Measure 2 (Advisory)",
+  "reported_at": "2026-11-05T03:10:00Z",
+  "jurisdictions": [
+    {
+      "id": "coastal",
+      "name": "Coastal Region",
+      "registered_voters": 410000,
+      "ballots_cast": 328000,
+      "contests": [
+        {
+          "office": "Measure 2 — Yes / No",
+          "candidates": [
+            { "name": "Yes", "party": "", "votes": 165200 },
+            { "name": "No", "party": "", "votes": 162800 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "inland",
+      "name": "Inland Region",
+      "registered_voters": 520000,
+      "ballots_cast": 364000,
+      "contests": [
+        {
+          "office": "Measure 2 — Yes / No",
+          "candidates": [
+            { "name": "Yes", "party": "", "votes": 178400 },
+            { "name": "No", "party": "", "votes": 185600 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capital-metro",
+      "name": "Capital Metro",
+      "registered_voters": 390000,
+      "ballots_cast": 312000,
+      "contests": [
+        {
+          "office": "Measure 2 — Yes / No",
+          "candidates": [
+            { "name": "Yes", "party": "", "votes": 159600 },
+            { "name": "No", "party": "", "votes": 152400 }
+          ]
+        }
+      ]
+    }
+  ]
+}

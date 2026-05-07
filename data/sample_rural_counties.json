@@ -1,0 +1,52 @@
+{
+  "election_id": "rural-2026-sheriff",
+  "title": "Regional Sheriff Special Election",
+  "reported_at": "2026-04-02T14:00:00Z",
+  "jurisdictions": [
+    {
+      "id": "pine",
+      "name": "Pine County",
+      "registered_voters": 42000,
+      "ballots_cast": 16800,
+      "contests": [
+        {
+          "office": "Sheriff",
+          "candidates": [
+            { "name": "Dana Frost", "party": "Independent", "votes": 9200 },
+            { "name": "Vic Holloway", "party": "Independent", "votes": 7600 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cedar",
+      "name": "Cedar County",
+      "registered_voters": 31000,
+      "ballots_cast": 20100,
+      "contests": [
+        {
+          "office": "Sheriff",
+          "candidates": [
+            { "name": "Dana Frost", "party": "Independent", "votes": 10100 },
+            { "name": "Vic Holloway", "party": "Independent", "votes": 10000 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maple",
+      "name": "Maple County",
+      "registered_voters": 28000,
+      "ballots_cast": 11200,
+      "contests": [
+        {
+          "office": "Sheriff",
+          "candidates": [
+            { "name": "Dana Frost", "party": "Independent", "votes": 5400 },
+            { "name": "Vic Holloway", "party": "Independent", "votes": 5800 }
+          ]
+        }
+      ]
+    }
+  ]
+}

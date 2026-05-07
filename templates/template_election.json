@@ -1,0 +1,25 @@
+{
+  "election_id": "your-election-id",
+  "title": "Your election title",
+  "reported_at": null,
+  "jurisdictions": [
+    {
+      "id": "jurisdiction-1",
+      "name": "Example county or precinct",
+      "registered_voters": 10000,
+      "ballots_cast": 0,
+      "contests": [
+        {
+          "office": "Example office (e.g. Mayor)",
+          "candidates": [
+            {
+              "name": "Candidate name",
+              "party": "",
+              "votes": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

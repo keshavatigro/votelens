@@ -1,0 +1,69 @@
+{
+  "election_id": "demo-2026-general",
+  "title": "Demonstration General Election",
+  "reported_at": "2026-05-06T18:00:00Z",
+  "jurisdictions": [
+    {
+      "id": "north",
+      "name": "North County",
+      "registered_voters": 185000,
+      "ballots_cast": 118400,
+      "contests": [
+        {
+          "office": "Governor",
+          "candidates": [
+            { "name": "Jordan Ellis", "party": "Unity", "votes": 62400 },
+            { "name": "Sam Rivera", "party": "Forward", "votes": 45200 },
+            { "name": "Pat Kim", "party": "Independent", "votes": 10800 }
+          ]
+        },
+        {
+          "office": "State Senate District 4",
+          "candidates": [
+            { "name": "Alex Morgan", "party": "Unity", "votes": 58900 },
+            { "name": "Chris Blake", "party": "Forward", "votes": 59500 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "central",
+      "name": "Central City",
+      "registered_voters": 242000,
+      "ballots_cast": 162900,
+      "contests": [
+        {
+          "office": "Governor",
+          "candidates": [
+            { "name": "Jordan Ellis", "party": "Unity", "votes": 98100 },
+            { "name": "Sam Rivera", "party": "Forward", "votes": 52900 },
+            { "name": "Pat Kim", "party": "Independent", "votes": 11900 }
+          ]
+        },
+        {
+          "office": "Mayor",
+          "candidates": [
+            { "name": "Morgan Lee", "party": "Nonpartisan", "votes": 82300 },
+            { "name": "Dana Ortiz", "party": "Nonpartisan", "votes": 80600 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "south",
+      "name": "South Valley",
+      "registered_voters": 128000,
+      "ballots_cast": 88600,
+      "contests": [
+        {
+          "office": "Governor",
+          "candidates": [
+            { "name": "Jordan Ellis", "party": "Unity", "votes": 31200 },
+            { "name": "Sam Rivera", "party": "Forward", "votes": 49800 },
+            { "name": "Pat Kim", "party": "Independent", "votes": 7600 }
+          ]
+        }
+      ]
+    }
+  ]
+}

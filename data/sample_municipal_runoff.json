@@ -1,0 +1,52 @@
+{
+  "election_id": "city-2026-mayor-runoff",
+  "title": "Capital City Mayor Runoff",
+  "reported_at": "2026-05-01T21:45:00Z",
+  "jurisdictions": [
+    {
+      "id": "downtown",
+      "name": "Downtown Precincts",
+      "registered_voters": 156000,
+      "ballots_cast": 118000,
+      "contests": [
+        {
+          "office": "Mayor",
+          "candidates": [
+            { "name": "Nina Okonkwo", "party": "Nonpartisan", "votes": 61200 },
+            { "name": "Harper Diaz", "party": "Nonpartisan", "votes": 56800 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suburbs-n",
+      "name": "North Suburbs",
+      "registered_voters": 198000,
+      "ballots_cast": 151200,
+      "contests": [
+        {
+          "office": "Mayor",
+          "candidates": [
+            { "name": "Nina Okonkwo", "party": "Nonpartisan", "votes": 70200 },
+            { "name": "Harper Diaz", "party": "Nonpartisan", "votes": 81000 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suburbs-s",
+      "name": "South Suburbs",
+      "registered_voters": 134000,
+      "ballots_cast": 99600,
+      "contests": [
+        {
+          "office": "Mayor",
+          "candidates": [
+            { "name": "Nina Okonkwo", "party": "Nonpartisan", "votes": 52800 },
+            { "name": "Harper Diaz", "party": "Nonpartisan", "votes": 46800 }
+          ]
+        }
+      ]
+    }
+  ]
+}

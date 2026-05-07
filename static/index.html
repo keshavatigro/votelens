@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VoteLens — Bringing Election Data into Focus</title>
+    <meta name="description" content="VoteLens: Bringing Election Data into Focus." />
+    <link rel="icon" type="image/png" href="/static/logo.png" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-brand-band">
+        <div class="brand">
+          <a href="/" class="logo-link" aria-label="VoteLens home">
+            <img
+              class="logo"
+              src="/static/logo.png"
+              alt="VoteLens"
+              width="360"
+              height="200"
+              decoding="async"
+              onerror="this.onerror=null;this.src='/logo.png';"
+            />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="header-toolbar-row" role="region" aria-label="Data actions">
+      <div class="toolbar">
+        <button type="button" class="toolbar-link" id="btn-download-template">
+          Blank JSON template
+        </button>
+        <label class="upload-btn">
+          Load JSON
+          <input id="file-input" type="file" accept=".json,application/json" hidden />
+        </label>
+        <button id="btn-sample" type="button">Reload selected sample</button>
+      </div>
+    </div>
+
+    <main class="layout">
+      <section class="panel intro-copy">
+        <details class="intro-accordion">
+          <summary class="intro-summary" id="intro-heading">
+            <span class="intro-summary-title">About VoteLens &amp; how your data loads</span>
+            <span class="intro-summary-hint muted">Show details</span>
+          </summary>
+          <div class="intro-accordion-body">
+            <p class="intro-lead">
+              VoteLens turns <strong>structured election results</strong> (who ran, how many votes they received, and
+              where those votes came from) into clear summaries you can scan quickly: turnout, vote shares, close races,
+              and simple monitoring signals—without replacing official canvass or certification tools.
+            </p>
+            <p>
+              <strong>What we expect.</strong> Data arrives as <strong>JSON</strong> describing one election: one or more
+              <em>jurisdictions</em> (counties, wards, precinct groupings), each with <em>contests</em> (offices or questions)
+              and <em>candidates</em> with vote totals. Optional <code>registered_voters</code> and
+              <code>ballots_cast</code> let us compute turnout. Everything stays in your browser session unless you upload a
+              file to this app’s server for processing.
+            </p>
+            <p>
+              <strong>How loading works.</strong>
+            </p>
+            <ul class="intro-steps">
+              <li>
+                <strong>First load.</strong> When you open this page, VoteLens asks the server for the catalog of sample
+                files and loads the default dataset so charts and tables populate immediately.
+              </li>
+              <li>
+                <strong>Sample datasets</strong> (below). Click a card to pull that JSON from the server and re-run the
+                insight engine for that election. Use <strong>Download JSON</strong> on a card to save that exact file
+                locally.
+              </li>
+              <li>
+                <strong>Load JSON.</strong> Choose a file from your computer that matches the same schema; it is sent to
+                the API, validated, and the dashboard refreshes with your data—nothing is stored unless your deployment is
+                configured to log uploads.
+              </li>
+              <li>
+                <strong>Blank JSON template.</strong> Downloads an empty, valid starter file you can edit offline, then load
+                back with <strong>Load JSON</strong>.
+              </li>
+              <li>
+                <strong>Reload selected sample.</strong> Fetches the current sample again from the server—useful after you
+                change a file under <code>data/</code> on the machine hosting VoteLens.
+              </li>
+            </ul>
+            <p class="intro-foot muted">
+              Hover KPIs, alerts, table rows, and chart elements for definitions and underlying figures. If the sample grid
+              or downloads fail to respond, confirm the VoteLens server is running and refresh the page.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <section class="panel hero" id="election-meta">
+        <p class="muted">Loading…</p>
+      </section>
+
+      <section class="panel">
+        <h2>Key numbers</h2>
+        <p class="chart-hint">Hover a card for definitions, formulas, and turnout bands.</p>
+        <div id="kpi-row" class="kpi-row"></div>
+      </section>
+
+      <section class="panel split">
+        <div>
+          <h2>Monitoring</h2>
+          <p class="chart-hint">Hover an alert for severity and full text.</p>
+          <ul id="alerts" class="alerts"></ul>
+        </div>
+        <div>
+          <h2>Story in bullets</h2>
+          <p class="chart-hint">Hover a bullet to copy-friendly detail (same text).</p>
+          <ul id="narrative" class="narrative"></ul>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="chart-head">
+          <div>
+            <h2>Turnout by jurisdiction</h2>
+            <p class="chart-hint">Hover each bar for registered voters, ballots cast, and contest count.</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chart-turnout" height="220"></canvas>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="chart-head">
+          <div>
+            <h2>Race overview</h2>
+            <p class="chart-hint">
+              Hover the donut or stacked bars for vote totals, shares, and jurisdiction splits.
+            </p>
+          </div>
+          <label>
+            Office
+            <select id="office-select"></select>
+          </label>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-wrap">
+            <canvas id="chart-share" height="260"></canvas>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="chart-geo" height="260"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Jurisdiction detail</h2>
+        <p class="chart-hint">Hover a row for registered voters, ballots, turnout formula, and contest count.</p>
+        <div class="table-scroll">
+          <table id="table-jx">
+            <thead>
+              <tr>
+                <th>Jurisdiction</th>
+                <th>Turnout</th>
+                <th>Registered</th>
+                <th>Ballots cast</th>
+                <th>Contests</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel sample-sources-panel" id="sample-sources-section">
+        <details class="intro-accordion">
+          <summary class="intro-summary" id="sample-sources-heading">
+            <span class="intro-summary-title">Sample datasets</span>
+            <span class="intro-summary-hint muted">Show datasets</span>
+          </summary>
+          <div class="intro-accordion-body">
+            <p class="chart-hint">
+              Click a card to load that JSON. Use <strong>Download JSON</strong> on a card to save a copy, or
+              <strong>Blank JSON template</strong> in the header for an empty schema. “Reload selected sample” refreshes
+              after you edit files on the server.
+            </p>
+            <div id="sample-sources-grid" class="sample-sources-grid" aria-label="Sample election JSON files"></div>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span
+        >VoteLens · API:
+        <code>/api/election/template/download</code>,
+        <code>/api/election/samples/{id}/download</code></span
+      >
+    </footer>
+
+    <div id="vl-tooltip" class="vl-tooltip" role="tooltip" hidden></div>
+  </body>
+</html>

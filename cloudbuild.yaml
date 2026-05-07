@@ -1,0 +1,53 @@
+# Build, push to Artifact Registry, then deploy to Cloud Run.
+# Prerequisites: enable APIs, create Artifact Registry repo (see DEPLOY_GCP.md).
+#   gcloud builds submit --config cloudbuild.yaml .
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+substitutions:
+  _REGION: us-central1
+  _AR_REPO: votelens
+  _SERVICE_NAME: votelens
+
+steps:
+  - id: build-image
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - "-t"
+      - "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE_NAME}:$BUILD_ID"
+      - "-t"
+      - "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE_NAME}:latest"
+      - .
+
+  # Push each tag explicitly (--all-tags + repo path can fail on some Docker/AR setups)
+  - id: push-image-buildid
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE_NAME}:$BUILD_ID"
+
+  - id: push-image-latest
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE_NAME}:latest"
+
+  - id: deploy-cloud-run
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICE_NAME}
+      - "--image=${_REGION}-docker.pkg.dev/$PROJECT_ID/${_AR_REPO}/${_SERVICE_NAME}:$BUILD_ID"
+      - "--region=${_REGION}"
+      - "--platform=managed"
+      - "--quiet"
+      - "--memory=512Mi"
+      - "--cpu=1"
+      - "--min-instances=0"
+      - "--max-instances=10"
+      - "--timeout=120"
+      - "--allow-unauthenticated"

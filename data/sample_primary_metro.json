@@ -1,0 +1,55 @@
+{
+  "election_id": "metro-2026-primary",
+  "title": "Metro Area Presidential Primary",
+  "reported_at": "2026-03-15T22:30:00Z",
+  "jurisdictions": [
+    {
+      "id": "east-ward",
+      "name": "East Ward",
+      "registered_voters": 92000,
+      "ballots_cast": 71400,
+      "contests": [
+        {
+          "office": "President (Primary)",
+          "candidates": [
+            { "name": "Taylor Chen", "party": "Citizen", "votes": 38200 },
+            { "name": "Riley Brooks", "party": "Citizen", "votes": 29800 },
+            { "name": "Jamie Park", "party": "Citizen", "votes": 3400 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "west-ward",
+      "name": "West Ward",
+      "registered_voters": 88000,
+      "ballots_cast": 52100,
+      "contests": [
+        {
+          "office": "President (Primary)",
+          "candidates": [
+            { "name": "Taylor Chen", "party": "Citizen", "votes": 20100 },
+            { "name": "Riley Brooks", "party": "Citizen", "votes": 28500 },
+            { "name": "Jamie Park", "party": "Citizen", "votes": 3500 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor",
+      "name": "Harbor District",
+      "registered_voters": 54000,
+      "ballots_cast": 38900,
+      "contests": [
+        {
+          "office": "President (Primary)",
+          "candidates": [
+            { "name": "Taylor Chen", "party": "Citizen", "votes": 14200 },
+            { "name": "Riley Brooks", "party": "Citizen", "votes": 19800 },
+            { "name": "Jamie Park", "party": "Citizen", "votes": 4900 }
+          ]
+        }
+      ]
+    }
+  ]
+}
