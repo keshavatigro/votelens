@@ -4,6 +4,8 @@
 
 VoteLens is a small web app that turns structured election JSON (jurisdictions, contests, candidates, votes, optional turnout fields) into KPIs, charts, plain-language bullets, and simple monitoring signals.
 
+Repository: [github.com/keshavatigro/votelens](https://github.com/keshavatigro/votelens)
+
 ## Requirements
 
 - Python 3.12+ (3.11+ usually works)
@@ -11,7 +13,8 @@ VoteLens is a small web app that turns structured election JSON (jurisdictions, 
 ## Run locally
 
 ```bash
-cd IPl2_Plan 2   # or your clone directory
+git clone https://github.com/keshavatigro/votelens.git
+cd votelens
 python -m pip install -r requirements.txt
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8765
 ```
